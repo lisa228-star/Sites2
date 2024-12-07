@@ -1,38 +1,43 @@
+html, body {
+  height: 100%; /* Устанавливаем высоту для html и body на 100% */
+  margin: 0; /* Убираем стандартные отступы */
+}
+
 body {
   font-family: Arial, sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  background-color: #f0f8ff;
+  display: flex;
+  justify-content: center; /* Центровка по горизонтали */
+  align-items: center; /* Центровка по вертикали */
+  background-color: #f4f4f4;
 }
 
-h1 {
-  margin-top: 20px;
+.container {
+  width: 300px; /* Устанавливаем фиксированную ширину контейнера */
+  height: 400px; /* Устанавливаем фиксированную высоту контейнера */
+  display: flex;
+  flex-direction: column; /* Располагаем элементы в колонку */
+  justify-content: center; /* Центровка элементов внутри контейнера по вертикали */
+  align-items: center; /* Центровка элементов внутри контейнера по горизонтали */
+  background: #8e44ad; /* Фиолетовый цвет фона */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: white; /* Цвет текста белый */
 }
 
-#gameArea {
-  width: 100vw;
-  height: 80vh;
-  position: relative;
-  margin: 20px auto;
-  border: 2px solid #000;
-  background-color: #add8e6;
-  overflow: hidden;
+input[type="number"], button {
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
 }
 
-#ball {
-  width: 50px;
-  height: 50px;
-  background-color: red;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+button {
+  background-color: #6c3483; /* Темный фиолетовый для кнопок */
+  color: white;
   cursor: pointer;
-  transition: transform 0.1s;
 }
 
-#ball:active {
-  transform: translate(-50%, -50%) scale(1.2);
+button:hover {
+  background-color: #5f2c8f; /* Темно-фиолетовый при наведении */
 }

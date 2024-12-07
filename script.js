@@ -1,28 +1,31 @@
-const ball = document.getElementById('ball');
-const scoreDisplay = document.getElementById('score');
-let score = 0;
+const guessButton = document.getElementById('guessButton');
+   const guessInput = document.getElementById('guessInput');
+   const resultText = document.getElementById('resultText');
+   const restartButton = document.getElementById('restartButton');
 
-// Функция для перемещения шара в случайное место
-function moveBall() {
-  const gameArea = document.getElementById('gameArea');
-  const gameWidth = gameArea.offsetWidth;
-  const gameHeight = gameArea.offsetHeight;
+   let randomNumber = Math.floor(Math.random() * 100) + 1;
+   let attempts = 0;
 
-  const ballSize = ball.offsetWidth;
+   guessButton.addEventListener('click', () => {
+       const userGuess = parseInt(guessInput.value);
+       attempts++;
 
-  const newX = Math.random() * (gameWidth - ballSize);
-  const newY = Math.random() * (gameHeight - ballSize);
+       if (userGuess === randomNumber) {
+           resultText.textContent = `Поздравляем! Вы угадали число ${randomNumber} за ${attempts} попыток!`;
+           guessButton.disabled = true;
+           restartButton.style.display = 'block';
+       } else if (userGuess < randomNumber) {
+           resultText.textContent = 'Слишком маленькое! Попробуй снова.';
+       } else {
+           resultText.textContent = 'Слишком высокое! Попробуй снова.';
+       }
+   });
 
-  ball.style.left = `${newX}px`;
-  ball.style.top = `${newY}px`;
-}
-
-// Обработчик клика по шару
-ball.addEventListener('click', () => {
-  score++;
-  scoreDisplay.textContent = score;
-  moveBall();
-});
-
-// Переместить шар при загрузке игры
-moveBall();
+   restartButton.addEventListener('click', () => {
+       randomNumber = Math.floor(Math.random() * 100) + 1;
+       attempts = 0;
+       guessButton.disabled = false;
+       resultText.textContent = '';
+       guessInput.value = '';
+       restartButton.style.display = 'none';
+   });
